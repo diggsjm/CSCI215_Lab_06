@@ -1,20 +1,24 @@
+/*
 document.getElementById("subscribe").onclick = function validate() {
     checkEmail();
 
 }
 
 
+*/
 
-function checkEmail(email) {
+document.getElementById("email").onkeyup = function checkEmail() {
     var regExp = new RegExp('[a-z0-9!#$%&\'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&\'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?');
     var email = document.getElementById("email");
 
-    if(regExp.test(email) == true){
+    if(regExp.test(document.getElementById("email").value)){
         //if this returns true call on myAjaxFunction()
         //inside myAjaxFunction--- have an alert pop up and clear the data fields
         myAjaxFunction();
+        return (true);
     }else{
         //returns false -- alert the subscription did not work
+        return (false);
         alert("Subscription couldn't be processed");
     }
 
@@ -23,7 +27,7 @@ function checkEmail(email) {
 function myAjaxFunction(){
     alert("Ajax has been made");
 
-    document.getElementsByClassName("subform").reset();
+    document.getElementById("submit").reset();
 
 
 }
@@ -31,10 +35,16 @@ function myAjaxFunction(){
 
 document.getElementById("age").onkeyup = function checkAge() {
 //    var regExp = new RegExp('^(([0-9][1-9])|([1-9][0-9])|[1-9])$');
-    var regExp = new RegExp('[0,9]{1,3}');
+    var regExp = new RegExp('\\d?[1-9][1-9]0$');
     var age = document.getElementById("age");
     console.log("Age is running");
 
+    if(regExp.test(document.getElementById("age").value)){
+        age.style.backgroundColor = 'white'
+    }else{
+        age.style.backgroundColor = 'red';
+    }
+/*
     for(var i = 0; i <age; i++){
         if(regExp.test(document.getElementById("age").valueOf(i) === ".") || regExp.test(document.getElementById("age").length > 2)){
             age.style.backgroundColor = 'red';
@@ -43,6 +53,7 @@ document.getElementById("age").onkeyup = function checkAge() {
             age.style.backgroundColor = 'white';
         }
     }
+*/
 
 /*    if(regExp.test(document.getElementById("age").length > 2)){
         age.style.backgroundColor = 'red';
